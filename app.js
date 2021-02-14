@@ -78,7 +78,7 @@ const createSlider = () => {
     let item = document.createElement("div");
     item.className = "slider-item";
     item.innerHTML = `
-    <button class="btn btn-primary mb-1" onclick="goBack()">GO BACK</button>
+    <button class="btn btn-primary mb-5 mt-2" onclick="goBack()"><i class="fas fa-arrow-left"></i> BACK</button>
     <img class="w-100"
     src="${slide}"
     alt="">`;
@@ -141,9 +141,9 @@ const toggleSpinner = () => {
   spinner.classList.toggle("d-none");
 };
 
+// Back Button
 const goBack = () => {
   document.querySelector(".main").style.display = "none";
-  // hide image aria
   imagesArea.style.display = "block";
   const duration = Math.abs(document.getElementById("duration").value) || 1000;
   clearInterval(timer);
