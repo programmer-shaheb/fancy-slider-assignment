@@ -47,7 +47,7 @@ const selectItem = (event, img) => {
     sliders.push(img);
     element.classList.toggle("added");
   } else {
-    sliders.pop(img);
+    sliders.splice(item, 1);
     element.classList.toggle("added");
   }
 };
@@ -63,7 +63,7 @@ const createSlider = () => {
   const prevNext = document.createElement("div");
   prevNext.className =
     "prev-next d-flex w-100 justify-content-between align-items-center";
-  prevNext.innerHTML = ` 
+  prevNext.innerHTML = `
   <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
   <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
   `;
@@ -77,7 +77,9 @@ const createSlider = () => {
   sliders.forEach((slide) => {
     let item = document.createElement("div");
     item.className = "slider-item";
-    item.innerHTML = `<img class="w-100"
+    item.innerHTML = `
+    <button class="btn btn-primary mb-1" onclick="goBack()">GO BACK</button>
+    <img class="w-100"
     src="${slide}"
     alt="">`;
     sliderContainer.appendChild(item);
@@ -136,7 +138,13 @@ sliderBtn.addEventListener("click", function () {
 
 const toggleSpinner = () => {
   const spinner = document.getElementById("spinner-loading");
-
   spinner.classList.toggle("d-none");
-  // console.log(spinner.classList);
+};
+
+const goBack = () => {
+  document.querySelector(".main").style.display = "none";
+  // hide image aria
+  imagesArea.style.display = "block";
+  const duration = Math.abs(document.getElementById("duration").value) || 1000;
+  clearInterval(timer);
 };
